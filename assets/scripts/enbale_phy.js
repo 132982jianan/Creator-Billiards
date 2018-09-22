@@ -1,3 +1,8 @@
+/**
+ * 赋予这个节点调试能力
+ * 因此这才是真正的模块化
+ */
+
 cc.Class({
     extends: cc.Component,
 
@@ -19,19 +24,24 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+
         // 游戏引擎的总控制
+
         // cc.Director, cc.director 区别呢？
         // 大写的cc.Director是一个类, 小写cc.direcotr全局的实例
         cc.director.getPhysicsManager().enabled = true; // 开启了物理引擎
+
         // 独立的形状，打开一个调试区域,游戏图像的，逻辑区域;
         // 开始调试模式:
         if (this.is_debug) { // 开启调试信息
             var Bits = cc.PhysicsManager.DrawBits; // 这个是我们要显示的类型
             cc.director.getPhysicsManager().debugDrawFlags = Bits.e_jointBit | Bits.e_shapeBit;
         }
-        else { // 关闭调试信息
+        else {
+            // 关闭调试信息
             cc.director.getPhysicsManager().debugDrawFlags = 0;
         }
+
         // 重力加速度的配置
         cc.director.getPhysicsManager().gravity = this.gravity;
     },
